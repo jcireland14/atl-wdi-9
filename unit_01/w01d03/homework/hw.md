@@ -60,13 +60,31 @@ track of whether tasks have been completed, it will also keep track of
 how long each task took to complete. Tasks can be grouped into 'projects' to
 keep them organized.
 
-> Answer here
+TASKS:
+-task name
+-time of start of task
+-time of end of task
+PROJECTS:
+-name of project
+-description of project
+-what tasks are being completed
 
 ### 2. Photo Sharing App
 
 In this app, users can upload photos to their accounts and share them with others. These photos can be grouped into albums.
 
-> Answer here
+USER:
+-name 
+-photos
+-albums
+PHOTO:
+-name
+-date
+-location where photo is stored
+ALBUM:
+-title of album /name
+-photos
+
 
 ### 3. Home Automation Manager
 
@@ -75,7 +93,13 @@ track of the time and temperature of the house that it monitors, and use that
 information to turn on and off different lights and adjust the thermostat up
 and down.
 
-> Answer here
+HOME:
+-thermostat temperature
+-lights
+LIGHTS:
+-name of light
+-location of light
+-on/off setting
 
 ### 4. Sneaker Store
 
@@ -83,7 +107,15 @@ This app will allow customers to browse a list of products (sneakers, in this
 case), add those products to a cart, and save that cart as a past order once the
 purchase is complete.
 
-> Answer here
+PRODUCT:
+-product name
+-price
+-description
+
+ORDER:
+-product
+-order date
+
 
 ## Representing Abstractions in Code
 
@@ -139,7 +171,7 @@ var exampleLine = {
 
 What are some advantages and disadvantages of choosing these representations? Please give at least one example of each.
 
-> Answer here
+Each gives a better description that could help plan a person's day and help them navigate better through the town so they are not back tracking and wasting time going back and forth on train. Easier to locate the your way through the rail system.
 
 ### 6. Doctor Appointment App
 
@@ -242,7 +274,7 @@ Under what circumstances might one representation be a better choice than the
 other? Are there any circumstances in which the other representation might be
 the better choice?
 
-> Answer here
+Option 2 specifies what is being done in cleaner and is less steps. Option 1 seems like it is not as straight to the point.  Other representation could be better depending on the needs of the doctor's office/healthcare system.
 
 ## Tying It Together
 
@@ -253,13 +285,25 @@ You've been tasked with building an in-browser tic-tac-toe game.
 a.  What are some possible entities that your application might use to model its
     data? Please pick at least two, with at least two properties apiece.
 
-  > Answer here
-
+  PLAYER:
+  -name
+  -X's or O's
+  
+  GAME:
+  -2 players (X or 0)
+  -moves
+  
 b.  How might those entities be represented in JavaScript code?
 
-  > Answer here
+var player1 = "Julian";
+var player2 = "Maggie";
+julian = "X's";
+maggie = "O's";
+
+
+
 
 c.  Justify your choices in a) and b). Why these entities? Why these
     representations?
 
-  > Answer here
+  They are short and to the point.  They are precise and clear.
