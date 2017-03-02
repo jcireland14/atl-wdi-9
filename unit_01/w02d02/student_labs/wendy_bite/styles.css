@@ -1,1 +1,53 @@
-/* Add your CSS code here. */
+
+body{
+  font-family: sans-serif
+  border: 5px solid #777777;
+  margin: 30px;
+  background-color: #444444;
+  color: #EEEEEE;
+}
+h1, footer, nav{
+  text-align: center;
+}
+h2{
+  text-align: left;
+  color: #FFFFFF;
+}
+p{
+  font-family: Georgia;
+}
+  h1{
+    color: #FFFFFF;
+    font-family: Georgia
+      font-style:italic;
+  }
+span{
+  color: white;
+}
+img{
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #999999;
+  padding: 5px;
+}
+
+}
+.active{
+  color: white;
+  text-decoration: none;
+  font-size:20px
+}
+.other{
+  color: #00d680;
+  font-size: 20px;
+}
+hr{
+  width: 80%;
+
+}
+.footy {
+  color: #00d680;
+  text-decoration:none;
+  font-size: 17px;
+}
