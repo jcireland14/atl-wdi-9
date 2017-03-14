@@ -111,6 +111,7 @@ else if the variable `pathname` is `/movies` build y response <br />
 else if the variable `pathname` is `/portfolio` build z response <br />
 else build a `404` response
 
+**YOU DO: 5 minutes** <br />
 Write the necessary if or switch statement to listen for these three routes.
 
 1. /fun-times will send a response with:
@@ -130,7 +131,7 @@ Write the necessary if or switch statement to listen for these three routes.
 
 ## Part 3 — BONUS: Build an interface for a pseudo-database
 
-Add the following three lines to your `server.js` file and the `cruise_data.json` file to the same directory that has your `server.js` file to create an app that displays all the Tom Cruise movies!
+Add the following three lines to your `server.js` file and the [cruise_data.json](https://github.com/ATL-WDI-Curriculum/atl-wdi-9/blob/master/unit_02/w06d01/student_labs/cruise_data.json) file to the same directory that has your `server.js` file to create an app that displays all the Tom Cruise movies!
 
 ```js
 var fs           = require('fs');

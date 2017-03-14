@@ -55,7 +55,7 @@ So in your `/unit_02/w06d04/student_labs` folder, you should see a starter appli
 
 <br>
 
-&#x1F535; **YOU DO: PART 1 - Starter Code Set-up**
+&#x1F535; **I DO, THEN YOU DO: PART 1 - Starter Code Set-up**
 
 1. `cd` into `starter-code-hbs` and run the command `npm install` which will read the `package.json` file and install all of the dependencies specified in a `node_modules` folder.
 
@@ -65,7 +65,7 @@ So in your `/unit_02/w06d04/student_labs` folder, you should see a starter appli
 
     In `server.js`, notice that we have a `/todos` route. It contains `var seededTodos` which is an array of 2 seeded todos:
 
-    ```js
+```javascript
 /* INDEX */
 app.get('/todos', function(req,res) {
       var seededTodos = [
@@ -192,6 +192,8 @@ router.get('/', function(req,res) {
 
 ## module.exports
 
+&#x1F535; **I DO, THEN YOU DO**
+
 In `server.js`, we have a `var seededTodos` which is an array of 2 seeded todos.
 
 As our app grows in size and complexity, we'll want to move logic out of our `server.js` file. One method for doing so is by using an object called `module.exports`. This allows us to clean up and share code throughout our app.
@@ -202,7 +204,7 @@ file.
 
 1. For example, let's remove the `seededTodos` data from `controllers/todos.js` to our `data.js` file by adding it as a property to `module.exports` like so:
 
-    ```js
+```javascript
     module.exports = {
      seededTodos: [
         {
@@ -216,25 +218,25 @@ file.
     };
 ```
 
-    Now our `module.exports` will have a property of `seededTodos` which is an Array of todo objects.
+Now our `module.exports` will have a property of `seededTodos` which is an Array of todo objects.
 
-1. In `controllers/todos.js`, instantiate a variable to grant access to module we've created:
+2. In `controllers/todos.js`, instantiate a variable to grant access to module we've created:
 
-    ```js
+```javascript
 var data = require('../data.js');
 ```
 
-1. Now, our variable `data` is our `module.exports` object. We can access our `seededTodos` via our `controllers/todos.js` file like so:
+3. Now, our variable `data` is our `module.exports` object. We can access our `seededTodos` via our `controllers/todos.js` file like so:
 
-    ```js
+```javascript
     res.render('todos/index.hbs', {
        todos: data.seededTodos
     });
 ```
-    > This is essentially like calling `module.exports.data`
+> This is essentially like calling `module.exports.data`
 
 
-    > Refresh the page and you can see that nothing changed in our browser, really we just moved the functionality into a different file.
+> Refresh the page and you can see that nothing changed in our browser, really we just moved the functionality into a different file.
 
 <details>
 
@@ -359,7 +361,7 @@ Don't worry about this idea of nested resources for now, but know this is where 
 
 Convention dictates that the `show` route returns one instance of of a given resource.
 
-&#x1F535; **YOU DO**
+&#x1F535; **I DO, THEN YOU DO**
 
 In previous lessons we learned about 'wildcard params'. (e.g. - `http://localhost:3000/:id`)
 
@@ -422,26 +424,25 @@ Based on our table earlier. What view name do we want to use to create a page th
 
 2. Inside of `/todos/new.hbs` add the html form tags:
 
-    ```html
+```html
 <form>
 </form>
 ```
 
-    Now, forms need to know where to _send_ information and the HTTP verb they'll be using to submit a request. Which verb do we use to **create** a new resource?
+Now, forms need to know where to _send_ information and the HTTP verb they'll be using to submit a request. Which verb do we use to **create** a new resource?
 
-    `POST`
+`POST`
 
-    What's the route we need to `POST` to?
+What's the route we need to `POST` to?
 
-    `http://localhost:3000/todos`
+`http://localhost:3000/todos`
 
 
-    All forms must have a `method` and an `action`.
-
+All forms must have a `method` and an `action`.
 
 1. Add method and action attributes to our form. The value of method will be `POST` and the value of action will `/todos`
 
-    ```html
+```html
 <form method="POST" action="/todos">
 </form>
 ```
@@ -617,14 +618,13 @@ Awesome so now we have a form that renders on the page. So let's engage in some 
 
 &#x1F535; **CFU**
 
+![](https://i.imgur.com/QyawZUf.png)
+<br>
+
 - What happens when we add data and click the submit button?
 - What's the difference between the 'new' route and 'create' route in terms of functionality?
 
-![](https://i.imgur.com/QyawZUf.png)
-
-<br>
-
-&#x1F535; **YOU DO**
+&#x1F535; **I DO, THEN YOU DO**
 
 Build a todo CREATE route using `router.post`. Don't worry about accessing the params from the form yet. Just send a response back ("Create a new todo is working!") to the client so you can verify the route works.
 
@@ -668,22 +668,22 @@ We access it via the `body` property.
 
 1. Install body-parser using npm
 
-    ```bash
+```bash
 $ npm install --save body-parser
 ```
 
-    Remember this npm command will fetch the module in question, install it on our server, and load it into our `package.json`
+Remember this npm command will fetch the module in question, install it on our server, and load it into our `package.json`
 
 1. Then inside our `server.js` we need to `require()` the module and configure it.
 
-    ```javascript
-    var bodyParser = require('body-parser');
+```javascript
+var bodyParser = require('body-parser');
 
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 ```
-    The params passed with a request will be "decoded" automatically, allowing you to use dot notation when working with JavaScript objects! The `extended: true` makes the objects more JSON-like.
+The params passed with a request will be "decoded" automatically, allowing you to use dot notation when working with JavaScript objects! The `extended: true` makes the objects more JSON-like.
 
 1. In our `.post` route, change `res.send("Create working");` to `res.send(req.body);`
 
@@ -904,7 +904,7 @@ The `req` argument is an object that contains information about the incoming HTT
 
 the `res` argument is another object that contains information about the response we want to send to the server.
 
-We initially started with using res.send to just send text to the browser, when using ejs however, we can use res.render to render an html/ejs file.
+We initially started with using res.send to just send text to the browser, when using hbs however, we can use res.render to render an html/hbs file.
 
 We can also use res.redirect to trigger another route before sending a response back to the browser
 
@@ -928,3 +928,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 </details>
 
 </details>
+
+## Resources
+
+[Bit further ahead: module.exports vs exports](http://www.hacksparrow.com/node-js-exports-vs-module-exports.html)
+
