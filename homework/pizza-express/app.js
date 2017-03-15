@@ -4,35 +4,37 @@ var express = require('express');
 var app     = express();
 // assigning 3000 as our port
 var port    = 3000;
+var hbs = require('hbs');
+
+app.set("view engine", "hbs");
+app.set('views', './views');
 
 
-/////////
-app.get('/', function(req, res) {
-
-    res.send("Welcome to Pizza Express!");
-  });
 // ////////topping route
-app.get('/topping/:cheese', function(req, res) {
-// var type = (req.query.type1)
-// var pizzaType = (`${req.query.type1} pizza! Good choice.`)
-
-var toppingType = "cheese";
-res.send(toppingType + " pizza! Good choice.");
-});
-
+var toppingsController = require(__dirname + '/controllers/toppings_controller.js');
+  app.use("/topping", toppingsController);
 // ////////order route
+var orderController = require(__dirname + '/controllers/order_controller.js');
+  app.use("/order", orderController);
+/////////index
+var indexController = require(__dirname + '/controllers/index_controller.js');
+  app.use("/", indexController);
 
-app.get('/order/:5/:large', function(req, res, next) {
-  var amountOrdered = 5;
-  var sizeOrdered = "large";
-   res.send("Your order for " + amountOrdered + " " +sizeOrdered + " will be ready in one minute!");
 
-});
+
+
+
+
+
+
+
+
+
 
 
 // tells the server to listen for requests on port 3000
 app.listen(port, function(){
-  console.log("==========================")
+  console.log("=^=^=^=^=^=^=^=^=^=^=^=^=^")
   console.log('LISTENING ON PORT ' + port);
-  console.log("==========================")
+  console.log("=^=^=^=^=^=^=^=^=^=^=^=^=^")
 });
