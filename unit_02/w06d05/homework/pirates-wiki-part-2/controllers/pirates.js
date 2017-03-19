@@ -11,7 +11,7 @@ var pirates = require('../models/pirates.js');
 //==============================
 //for root pirate page
 router.get('/', function(req, res){
-	res.render("pirates/index.hbs", {
+	res.render("pirates/index", {
 		pirates: pirates
 	});
 });
@@ -36,16 +36,53 @@ router.get('/:id', function(req, res){
 
 //==============================
 // CREATE
+router.post('/', function(req, res) {
+ var newPirate = {
+  name: req.body.name,
+  birthplace: req.body.birthplace,
+  death_year: req.body.death_year,
+  base: req.body.base,
+  nickname: req.body.nickname
+ }
+ pirates.push(newPirate);
+ res.redirect('/pirates');
+});
 //==============================
 
 //==============================
 // UPDATE
+router.get('/:id/edit', function(req, res) {
+  res.render('edit.hbs', {
+    pirates: pirates[req.params.id],
+    id: req.params.id
+  });
+});
+router.put('/:id', function (req, res){
+ var piratesEdit = pirates[req.params.id];
+
+ piratesEdit.name = req.body.name;
+ piratesEdit.birthplace = req.body.birthplace;
+ piratesEdit.yearOfDeath = req.body.pirate.death_year;
+ piratesEdit.base = req.body.base ;
+ piratesE.nickname = req.body.nickname;
+
+ res.redirect('/pirates');
+});
 //==============================
 
 //==============================
 // DESTROY
+router.delete('/:id', function(req, res) {
+  pirates.splice(req.params.id, 1);
+    res.redirect('/pirates');
+});
+router.get('/:id', function(req, res) {
+  res.render('pirates/show.hbs', {
+    pirate: pirates[req.params.id]
+  });
+});
 //==============================
-
+//
 //==============================
 // EXPORTS
 //==============================
