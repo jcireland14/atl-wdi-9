@@ -6,3 +6,9 @@
   <li>User 2 Name</li>
   <li>User 3 Name</li>
 </ul>
+{{#each users}}
+<li><a href="/users/{{this.id}}">{{this.username}}</a></li>
+{{/each}}
+</ul>
+
+<a href="/user/new">Add New User</a>

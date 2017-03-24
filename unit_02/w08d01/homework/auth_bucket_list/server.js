@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 
 var usersController = require('./controllers/users.js');
 var sessionsController = require('./controllers/sessions.js');
-
+var listsController = require('./controllers/lists.js')
 // require the list controller here
 
 var app = express();
@@ -31,7 +31,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
+app.use('/users/:id/lists', listsController);
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
 
