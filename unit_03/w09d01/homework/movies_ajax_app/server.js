@@ -19,5 +19,5 @@ app.use('/movies', moviesController);
 
 
 app.listen(3000, function() {
-  console.log('LISTENING TO PORT 3000')
+  console.log('Holla at ya boi ANDRE 3000')
 });

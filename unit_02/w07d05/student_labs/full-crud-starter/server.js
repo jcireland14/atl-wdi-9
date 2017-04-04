@@ -16,8 +16,8 @@ app.use(methodOverride('_method'))
 var usersController = require("./controllers/usersController.js");
 app.use('/users', usersController);
 
-var productIdeasController = require ('/users/:userId/project-ideas');
-app.use('/project-ideas', project-ideas);
+var productIdeasController = require ('./controllers/productIdeasController.js');
+app.use('/users/:userId/project-ideas', projectIdeasController);
 
 // Mongoose stuff
 var mongoose = require('mongoose');

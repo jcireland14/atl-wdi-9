@@ -90,4 +90,4 @@ module.exports = [
     base: "England",
 	  nickname: "Captain Kidd"
 	}
-];
+]

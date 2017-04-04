@@ -1,17 +1,19 @@
-/*
-General Assembly, WDI (Web Development Immersive) Remote, Cohort 02 (R2D2)
-Copyright (C) 2016 Matt Brendzel under the GNU General Public License.
-See LICENSE for details.
-*/
-
 body {
   padding: 10px 20% 10px;
   text-align: center;
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/cb/e8/44/cbe844b07f2e543eb064fa682214c97b.jpg");
 }
+/* yes the background is tiled on purpose, I mean who doesnt like wile E. coyote*/
 
-main, aside {
+
+body, h1{
+  font-family: verdana;
+  font-style: italic;
+}
+main {
   padding: 10px;
   border: 1px black solid;
+  border-radius: 25px;
   background-color: #EEEEEE;
 }
 
@@ -23,13 +25,10 @@ main section {
 main section button {
   height: 3em;
   min-width: 5em;
+  border-radius: 25px;
 }
 
-aside hr {
-  width: 60%;
-}
 
-aside ol {
-  font-size: 2em;
-  margin: 0 30% 0;
-}
+
+
+

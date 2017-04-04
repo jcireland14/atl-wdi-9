@@ -62,3 +62,4 @@
 // EXPORTS
 //======================
 // export router with module.exports
+module.exports = router;

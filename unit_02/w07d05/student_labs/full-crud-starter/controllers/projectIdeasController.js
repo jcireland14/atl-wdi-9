@@ -8,11 +8,11 @@ var ProjectIdea= require('../models/projectIdea');
 
 // USERS INDEX ROUTE
 router.get('/', function indexProjectIdea(req, res){
-  User.findById({req.params.usedId})
+  User.findById({req.params.userId})
     .exec(function(err, users){
       if (err) { console.log(err); }
       console.log(users);
-      res.render('projectIdeas/index.hbs', {
+      res.render('project_ideas/index.hbs', {
         user: user
       });
     });
