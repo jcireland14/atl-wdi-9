@@ -1,11 +1,11 @@
 const controller =require('./home.controller.js');
 const template = require('./home.html');
 
-const HomeComponent = {
+const component = {
   controller: controller,
   template: template
 };
 
 angular
   .module('criminals')
-  .component('home', HomeComponent);
+  .component('home', component);
