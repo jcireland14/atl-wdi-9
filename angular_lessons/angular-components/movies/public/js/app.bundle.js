@@ -63,19 +63,28 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+function ReviewsController() {
+    this.reviewList = [{ content: 'It was good.' }, { content: 'Meh.' }, { content: 'Did not like it.' }];
+}
+module.exports = ReviewsController;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const angular = __webpack_require__(4);
+const angular = __webpack_require__(5);
 
 angular.module('moviesApp', []);
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
 angular.module('moviesApp').controller('MoviesController', MoviesController);
@@ -87,17 +96,21 @@ function MoviesController() {
 }
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
 
-angular.module('moviesApp').controller('ReviewsController', ReviewsController);
+let reviewsTemplate = __webpack_require__(6);
+let reviewsController = __webpack_require__(0);
 
-function ReviewsController() {
-    this.reviewList = [{ content: 'It was good.' }, { content: 'Meh.' }, { content: 'Did not like it.' }];
-}
+let ReviewsComponent = {
+    template: reviewsTemplate,
+    controller: reviewsController
+};
+
+angular.module('moviesApp').component('reviews', ReviewsComponent);
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 /**
@@ -33474,20 +33487,27 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
+__webpack_require__(4);
 module.exports = angular;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n    <h3>Reviews:</h3>\n    <ul>\n        <li ng-repeat=\"review in $ctrl.reviewList\">{{review.content}}</li>\n    </ul>\n</div>\n";
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(0);
 __webpack_require__(1);
-module.exports = __webpack_require__(2);
+__webpack_require__(2);
+__webpack_require__(3);
+module.exports = __webpack_require__(0);
 
 
 /***/ })
