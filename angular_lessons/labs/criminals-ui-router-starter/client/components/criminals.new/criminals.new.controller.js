@@ -1,23 +1,23 @@
-CriminalsNewController.$inject =['$stateParams', 'CriminalsService'];
+CriminalsNewController.$inject =['$state', 'CriminalsService'];
 
-function CriminalsNewController($stateParams, CriminalsService) {
+function CriminalsNewController($state, CriminalsService) {
   const vm = this;
 
-  // vm.current = {};
-  vm.new = {};
+  vm.newCriminal = {};
+  vm.addCriminal = addCriminal;
 
-  activate();
 
-  function activate() {
-    loadNewCriminal();
-  }
 
-  function loadNewCriminal() {
+
+
+  function addCriminal() {
     CriminalsService
-    .loadNew($stateParams.criminalId)
-    .then(function resolve(response) {
-      vm.new = response.data.criminal;
-    });
+    .addCriminal(vm.newCriminal);
+    vm.newCriminal = {};
+    $state
+      .go('criminals');
+
+
 }
 }
 module.exports = CriminalsNewController;

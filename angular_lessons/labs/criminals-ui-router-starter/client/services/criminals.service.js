@@ -10,7 +10,7 @@ function CriminalsService($http) {
 	// WHAT THIS SERVICE DOES / HAS AVAILABLE TO CALL
 	self.loadAll = loadAll;
   self.loadCurrent = loadCurrent;
-
+  self.addCriminal = addCriminal;
 
 	// HOW IT DOES STUFF
 	function loadAll() {
@@ -18,6 +18,8 @@ function CriminalsService($http) {
 	}
   function loadCurrent(id) {
     return $http.get('/api/criminals/' + id);
-
+  }
+  function addCriminal(newCriminal) {
+    return $http.post('/api/criminals', newCriminal);
   }
 }

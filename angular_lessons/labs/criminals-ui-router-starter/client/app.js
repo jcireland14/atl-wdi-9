@@ -21,7 +21,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
       url:'/criminals',
       template: '<criminals></criminals>'
     })
-    .state('criminalsNew', {
+    .state('newCriminal', {
       url: '/criminals/new',
       template: '<criminals-new></criminals-new>'
     })

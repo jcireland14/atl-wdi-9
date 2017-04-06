@@ -14,7 +14,7 @@ function CriminalsController(CriminalsService) {
 	function activate() {
 		loadAllCriminals();
 	}
-	
+
 
 	// HOW IT DOES STUFF
 	function loadAllCriminals() {

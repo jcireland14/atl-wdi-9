@@ -82,24 +82,18 @@ module.exports = AboutController;
 /* 1 */
 /***/ (function(module, exports) {
 
-CriminalsNewController.$inject = ['$stateParams', 'CriminalsService'];
+CriminalsNewController.$inject = ['$state', 'CriminalsService'];
 
-function CriminalsNewController($stateParams, CriminalsService) {
+function CriminalsNewController($state, CriminalsService) {
   const vm = this;
 
-  // vm.current = {};
-  vm.new = {};
+  vm.newCriminal = {};
+  vm.addCriminal = addCriminal;
 
-  activate();
-
-  function activate() {
-    loadNewCriminal();
-  }
-
-  function loadNewCriminal() {
-    CriminalsService.loadNew($stateParams.criminalId).then(function resolve(response) {
-      vm.new = response.data.criminal;
-    });
+  function addCriminal() {
+    CriminalsService.addCriminal(vm.newCriminal);
+    vm.newCriminal = {};
+    $state.go('criminals');
   }
 }
 module.exports = CriminalsNewController;
@@ -193,7 +187,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
   }).state('criminals', {
     url: '/criminals',
     template: '<criminals></criminals>'
-  }).state('criminalsNew', {
+  }).state('newCriminal', {
     url: '/criminals/new',
     template: '<criminals-new></criminals-new>'
   }).state('criminalsShow', {
@@ -287,6 +281,7 @@ function CriminalsService($http) {
 	// WHAT THIS SERVICE DOES / HAS AVAILABLE TO CALL
 	self.loadAll = loadAll;
 	self.loadCurrent = loadCurrent;
+	self.addCriminal = addCriminal;
 
 	// HOW IT DOES STUFF
 	function loadAll() {
@@ -294,6 +289,9 @@ function CriminalsService($http) {
 	}
 	function loadCurrent(id) {
 		return $http.get('/api/criminals/' + id);
+	}
+	function addCriminal(newCriminal) {
+		return $http.post('/api/criminals', newCriminal);
 	}
 }
 
@@ -38375,13 +38373,13 @@ module.exports = angular;
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  about\n</div>\n";
+module.exports = "<h1>About</h1>\n";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<form ng-submit=\"criminals.addCriminal()\" id=\"newCriminal\">\n    <div>\n      <label for=\"newCriminal-name\">Name:</label>\n      <input type=\"text\" id=\"newCriminal-name\" ng-model=\"criminals.newCriminal.name\" placeholder=\"Prof. Moriarty\">\n    </div>\n    <div>\n      <label for=\"newCriminal-location\">Crime:</label>\n      <input type=\"text\" id=\"newCriminal-crime\" ng-model=\"criminals.newCriminal.crime\" placeholder=\"Reichenbach Falls, CH\">\n    </div>\n    <div>\n      <input type=\"submit\" value=\"Add Criminal\">\n    </div>\n  </form>\n";
+module.exports = "<form ng-submit=\"$ctrl.addCriminal()\" id=\"newCriminal\">\n    <div>\n      <label for=\"newCriminal-name\">Name:</label>\n      <input type=\"text\" id=\"newCriminal-name\" ng-model=\"$ctrl.newCriminal.name\">\n    </div>\n    <div>\n      <label for=\"newCriminal-location\">Crime:</label>\n      <input type=\"text\" id=\"newCriminal-crime\" ng-model=\"$ctrl.newCriminal.crime\" >\n    </div>\n    <div>\n      <input type=\"submit\" value=\"Add Criminal\">\n    </div>\n</form>\n";
 
 /***/ }),
 /* 17 */
@@ -38393,7 +38391,7 @@ module.exports = "<div>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Crime: {{$ctr
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"criminals\">\n\t<li ng-show=\"$ctrl.loading\">\n\t\t<strong>Loading...</strong>\n\t</li>\n\n  <li ng-hide=\"$ctrl.loading\" ng-repeat=\"criminal in $ctrl.criminals\">\n    <strong>{{criminal.name}}</strong>\n\n\t\t<!-- Reference for Gerry -->\n    <!-- <em>{{criminal.crime}}</em> -->\n\n    <!-- <span ng-if=\"criminal.status\" class='status {{criminal.status | lowercase }}'>{{criminal.status | uppercase}}</span> -->\n\n    <a ui-sref=\"criminalsShow({ criminalId: criminal._id })\"> Click to see their crime (in criminals#show)</a>\n  </li>\n</ul>\n";
+module.exports = "<ul class=\"criminals\">\n\t<li ng-show=\"$ctrl.loading\">\n\t\t<strong>Loading...</strong>\n\t</li>\n\n  <li ng-hide=\"$ctrl.loading\" ng-repeat=\"criminal in $ctrl.criminals\">\n    <strong>{{criminal.name}}</strong>\n\n    <a ui-sref=\"criminalsShow({ criminalId: criminal._id })\"> Click to see their crime (in criminals#show)</a>\n    <button class='delete' ng-click=\"$ctrl.deleteCriminal({criminal})\">X</button>\n  </li>\n</ul>\n";
 
 /***/ }),
 /* 19 */
